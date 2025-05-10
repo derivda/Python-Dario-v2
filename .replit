@@ -1,4 +1,5 @@
-modules = ["python-3.11"]
+modules = ["web", "python-3.11"]
+run = "app.py"
 [nix]
 channel = "stable-24_05"
 packages = ["espeak-ng"]
@@ -6,3 +7,6 @@ packages = ["espeak-ng"]
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[deployment]
+run = ["sh", "-c", "app.py"]

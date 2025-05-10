@@ -1,46 +1,19 @@
 from flask import Flask, render_template, jsonify
+from database import dario_vagas_db
 
 app = Flask(__name__)
 
-VAGAS=[{
-
-    'titulo': 'Analista de Dados',
-    'localidade': 'Nampula',
-    'salario': '850000',
-    'descricao': 'Analista de dados para Analista de dados '
-},
-{
-
-    'titulo': 'Egenheiro de Dados',
-    'localidade': 'Beira',
-    'salario': '80000',
-    'descricao': 'Analista de dados para Analista de dados ' 
-  },
-   {
-       
-    'titulo': 'Seguransa Cybernetica',
-    'localidade': 'Nacala porto',
-    'salario': '850000',
-    'descricao': 'Analista de dados para Analista de dados '
-       
-   },
-       {
-
-    'titulo': 'Gestao de Cualidades',
-    'localidade': 'Maputo provincia',
-    'salario': '850000',
-    'descricao': 'Analista de dados para Analista de dados ' 
-       }
-      ]
 
 @app.route("/")
 def hello_world():
-    return render_template('home.html', vagas=VAGAS)
+    vagas = dario_vagas_db()
+    return render_template('home.html', vagas=vagas)
 
 
 @app.route("/vagas")
 def lista_vagas():
-    return jsonify(VAGAS)
+ vagas = dario_vagas_db()
+ return jsonify(vagas)
 
 
     
